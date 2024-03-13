@@ -18,6 +18,8 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
+      - name: Say Hello
+        run: echo "Hello from branch $i"
       - name: Checkout code
         uses: actions/checkout@v2
       # Add your test steps here
