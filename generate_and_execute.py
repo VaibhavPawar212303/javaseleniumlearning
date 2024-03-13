@@ -23,7 +23,7 @@ jobs:
         file.write(content)
 
 # Generate dynamic YAML files
-count = 5  # Number of dynamic YAML files to generate
+count = 10  # Number of dynamic YAML files to generate
 for i in range(1, count + 1):
     generate_yaml_file(i)
 
