@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Check if count argument is provided, default to 5 if not
 count=${1:-5}
 
@@ -20,3 +22,4 @@ jobs:
         uses: actions/checkout@v2
       # Add your test steps here
 EOF
+done
