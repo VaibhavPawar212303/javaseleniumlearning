@@ -29,10 +29,6 @@ jobs:
           # Verify installation
           gh --version
 
-      - name: Authenticate GitHub CLI
-        run: |
-          gh auth login --with-token <<< "${{ secrets.GITHUB_TOKEN }}"
-
       - name: Use Python
         uses: actions/setup-python@v2
         with:
@@ -41,5 +37,16 @@ jobs:
       - name: Install dependencies
         run: pip install PyGithub
 
-      - name: Run script to generate and execute dynamic YAML files
+      - name: Run script to generate dynamic YAML files
         run: python generate_and_execute.py
+      
+      - name: Check generated YAML files
+        run: ls -l dynamic_workflow_*.yml
+
+      - name: Run dynamic workflows
+        run: |
+          # Loop to execute dynamically generated YAML files
+          for file in dynamic_workflow_*.yml; do
+            echo "Running $file..."
+            gh workflow run $file
+          done
