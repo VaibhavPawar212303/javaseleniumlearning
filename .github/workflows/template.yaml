@@ -1,4 +1,4 @@
-name: Create and Run Dynamic Workflow
+name: Main Workflow
 
 on:
   push:
@@ -6,18 +6,16 @@ on:
       - main
 
 jobs:
-  generate-and-run:
+  run-dynamic-workflows:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v2
-
-      - name: Generate Dynamic Workflow
+      
+      # Run the generated dynamic workflows
+      - name: Execute Dynamic Workflows
         run: |
-          chmod +x generate_workflow.sh
-          ./generate_workflow.sh 10   # Pass count as an argument, e.g., 10
-
-      - name: Run Dynamic Workflow
-        run: |
-          cat dynamic_workflow.yml
-          # Run the generated workflow using `gh` CLI or GitHub API
+          ls dynamic_workflow_*.yml | while read -r file; do
+            echo "Running $file..."
+            gh workflow run "$file"
+          done
