@@ -1,4 +1,4 @@
-name: Main Workflow
+name: Generate and Execute Workflows
 
 on:
   push:
@@ -6,25 +6,22 @@ on:
       - main
 
 jobs:
-  run-script-and-dynamic-workflows:
+  generate-and-execute:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Grant executable permissions to the script
-        run: chmod +x generate_dynamic_yaml.sh
+      - name: Install gh CLI
+        run: sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key C99B11DEB97541F0 && sudo apt-add-repository https://cli.github.com/packages && sudo apt update && sudo apt install gh -y
 
-      - name: Execute Bash script
-        run: ./generate_dynamic_yaml.sh 5
+      - name: Use Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
 
-      # Set GH_TOKEN environment variable
-      - name: Set GH_TOKEN
-        run: echo "GH_TOKEN=${{ secrets.GITHUB_TOKEN }}" >> $GITHUB_ENV
+      - name: Install dependencies
+        run: pip install PyGithub
 
-      - name: Run Dynamic Workflows
-        run: |
-          for ((i=1; i<=5; i++)); do
-            echo "Running dynamic_workflow_$i.yml..."
-            gh workflow run dynamic_workflow_$i.yml
-          done
+      - name: Run script to generate and execute dynamic YAML files
+        run: python generate_and_execute.py
