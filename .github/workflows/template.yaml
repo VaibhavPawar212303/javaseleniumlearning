@@ -43,6 +43,9 @@ jobs:
       - name: Check generated YAML files
         run: ls -l dynamic_workflow_*.yml
 
+      - name: Authenticate GitHub CLI
+        run: gh auth login --with-token <<< ${{ secrets.GH_PAT }}
+
       - name: Run dynamic workflows
         run: |
           # Loop to execute dynamically generated YAML files
