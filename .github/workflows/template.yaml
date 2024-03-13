@@ -15,7 +15,7 @@ jobs:
       # Run the generated dynamic workflows sequentially
       - name: Execute Dynamic Workflows
         run: |
-          for ((i=1; i<=5; i++)); do
+          for ((i=1; i<=$COUNT; i++)); do
             echo "Running dynamic_workflow_$i.yml..."
-            gh workflow run dynamic_workflow_$i.yml
+            gh workflow run dynamic_workflow_$i.yml --token $GITHUB_TOKEN
           done
