@@ -29,6 +29,10 @@ jobs:
           # Verify installation
           gh --version
 
+      - name: Authenticate GitHub CLI
+        run: |
+          gh auth login --with-token <<< "${{ secrets.GITHUB_TOKEN }}"
+
       - name: Use Python
         uses: actions/setup-python@v2
         with:
