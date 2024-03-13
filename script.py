@@ -20,7 +20,7 @@ def execute_workflows(workflow_files):
         # You can use subprocess.run(), os.system(), or any other method to execute the workflow
 
 def main():
-    folder_path = "path/to/workflows/folder"  # Specify the path to the folder containing workflow files
+    folder_path = ".github/workflows"  # Specify the path to the folder containing workflow files
     workflow_files = get_workflow_files(folder_path)
     if workflow_files:
         execute_workflows(workflow_files)
