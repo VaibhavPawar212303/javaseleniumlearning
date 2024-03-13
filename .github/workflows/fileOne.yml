@@ -1,0 +1,17 @@
+name: Text File Workflow
+
+on:
+  push:
+    branches:
+      - main  # change this to your main branch name
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Print Text Content
+      run: echo "Hey File One"
