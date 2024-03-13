@@ -12,8 +12,22 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Install gh CLI
-        run: sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key C99B11DEB97541F0 && sudo apt-add-repository https://cli.github.com/packages && sudo apt update && sudo apt install gh -y
+      - name: Download and Install GitHub CLI
+        run: |
+          # Download the GitHub CLI binary
+          wget https://github.com/cli/cli/releases/download/v2.8.0/gh_2.8.0_linux_amd64.tar.gz
+
+          # Extract the downloaded archive
+          tar -xvf gh_2.8.0_linux_amd64.tar.gz
+
+          # Move the extracted binary to a directory in PATH
+          sudo mv gh_2.8.0_linux_amd64/bin/gh /usr/local/bin/gh
+
+          # Ensure the binary has executable permissions
+          sudo chmod +x /usr/local/bin/gh
+
+          # Verify installation
+          gh --version
 
       - name: Use Python
         uses: actions/setup-python@v2
