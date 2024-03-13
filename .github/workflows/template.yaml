@@ -6,16 +6,20 @@ on:
       - main
 
 jobs:
-  run-dynamic-workflows:
+  run-script-and-dynamic-workflows:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      # Run the generated dynamic workflows sequentially
-      - name: Execute Dynamic Workflows
+      # Execute Bash script to generate dynamic YAML files
+      - name: Execute Bash script
+        run: ./generate_dynamic_yaml.sh 5
+
+      # Run dynamically generated workflows
+      - name: Run Dynamic Workflows
         run: |
-          for ((i=1; i<=$COUNT; i++)); do
+          for ((i=1; i<=5; i++)); do
             echo "Running dynamic_workflow_$i.yml..."
-            gh workflow run dynamic_workflow_$i.yml --token $GITHUB_TOKEN
+            gh workflow run dynamic_workflow_$i.yml --token ${{ secrets.GITHUB_TOKEN }}
           done
