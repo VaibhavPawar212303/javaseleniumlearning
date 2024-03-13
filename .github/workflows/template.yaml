@@ -12,18 +12,15 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      # Add a step to grant executable permissions to the script
       - name: Grant executable permissions to the script
         run: chmod +x generate_dynamic_yaml.sh
 
-      # Add a step to execute the Bash script to generate dynamic YAML files
       - name: Execute Bash script
         run: ./generate_dynamic_yaml.sh 5
 
-      # Add a step to run dynamically generated workflows
       - name: Run Dynamic Workflows
         run: |
           for ((i=1; i<=5; i++)); do
             echo "Running dynamic_workflow_$i.yml..."
-            gh workflow run dynamic_workflow_$i.yml --token ${{ secrets.GITHUB_TOKEN }}
+            gh workflow run dynamic_workflow_$i.yml
           done
