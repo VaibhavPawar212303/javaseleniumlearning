@@ -18,6 +18,10 @@ jobs:
       - name: Execute Bash script
         run: ./generate_dynamic_yaml.sh 5
 
+      # Set GH_TOKEN environment variable
+      - name: Set GH_TOKEN
+        run: echo "GH_TOKEN=${{ secrets.GITHUB_TOKEN }}" >> $GITHUB_ENV
+
       - name: Run Dynamic Workflows
         run: |
           for ((i=1; i<=5; i++)); do
