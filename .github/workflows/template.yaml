@@ -11,11 +11,11 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-      
-      # Run the generated dynamic workflows
+
+      # Run the generated dynamic workflows sequentially
       - name: Execute Dynamic Workflows
         run: |
-          ls dynamic_workflow_*.yml | while read -r file; do
-            echo "Running $file..."
-            gh workflow run "$file"
+          for ((i=1; i<=5; i++)); do
+            echo "Running dynamic_workflow_$i.yml..."
+            gh workflow run dynamic_workflow_$i.yml
           done
