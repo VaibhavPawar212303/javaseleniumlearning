@@ -41,7 +41,7 @@ jobs:
         run: python generate_and_execute.py
       
       - name: Check generated YAML files
-        run: ls -l dynamic_workflows/*.yml
+        run: ls -l .github/*.yml
       
       - name: Check folder structure
         run: ls -l 
@@ -49,7 +49,7 @@ jobs:
       - name: Run dynamic workflows
         run: |
           # Loop to execute dynamically generated YAML files
-          for file in dynamic_workflows/*.yml; do
+          for file in .github/*.yml; do
             echo "Running $file..."
             gh auth login
             filename=$(basename "$file")
