@@ -38,18 +38,15 @@ jobs:
         run: pip install PyGithub
 
       - name: Run script to generate dynamic YAML files
-        run: python generate_and_execute.py
+        run: python generate_dynamic_yamls.py
       
       - name: Check generated YAML files
-        run: ls -l dynamic_workflow_*.yml
-
-      - name: Print Directory Contents
-        run: ls -l
+        run: ls -l dynamic_workflows/*.yml
 
       - name: Run dynamic workflows
         run: |
           # Loop to execute dynamically generated YAML files
-          for file in dynamic_workflow_*.yml; do
+          for file in dynamic_workflows/*.yml; do
             echo "Running $file..."
             gh auth login
             gh workflow run $file
