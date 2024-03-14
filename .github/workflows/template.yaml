@@ -38,7 +38,7 @@ jobs:
         run: pip install PyGithub
 
       - name: Run script to generate dynamic YAML files
-        run: python generate_dynamic_yamls.py
+        run: python generate_and_execute.py
       
       - name: Check generated YAML files
         run: ls -l dynamic_workflows/*.yml
