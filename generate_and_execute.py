@@ -27,8 +27,4 @@ count = 10  # Number of dynamic YAML files to generate
 for i in range(1, count + 1):
     generate_yaml_file(i)
 
-# Execute the dynamically generated YAML files in sequence
-for i in range(1, count + 1):
-    print(f"Executing dynamic_workflow_{i}.yml...")
-    os.system(f"gh workflow run dynamic_workflow_{i}.yml")
 
