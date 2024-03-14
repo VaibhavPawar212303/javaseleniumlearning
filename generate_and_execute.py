@@ -15,9 +15,6 @@ jobs:
     steps:
       - name: Say Hello
         run: echo "Hello from branch {index}"
-      - name: Checkout code
-        uses: actions/checkout@v2
-      # Add your test steps here
 """
     # Ensure the specified folder exists
     if not os.path.exists(folder):
