@@ -43,6 +43,9 @@ jobs:
       - name: Check generated YAML files
         run: ls -l dynamic_workflow_*.yml
 
+      - name: Print Directory Contents
+        run: ls -l
+
       - name: Run dynamic workflows
         run: |
           # Loop to execute dynamically generated YAML files
