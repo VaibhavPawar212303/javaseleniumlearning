@@ -52,5 +52,6 @@ jobs:
           for file in dynamic_workflows/*.yml; do
             echo "Running $file..."
             gh auth login
-            gh workflow run $file
+            filename=$(basename "$file")
+            gh workflow run "$filename"
           done
