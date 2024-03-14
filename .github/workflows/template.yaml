@@ -48,5 +48,6 @@ jobs:
           # Loop to execute dynamically generated YAML files
           for file in dynamic_workflow_*.yml; do
             echo "Running $file..."
+            gh auth login
             gh workflow run $file
           done
