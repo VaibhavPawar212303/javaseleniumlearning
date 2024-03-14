@@ -29,7 +29,7 @@ jobs:
         file.write(content)
 
 # Specify the folder where dynamic YAML files will be generated
-folder = "dynamic_workflows"
+folder = ".github"
 
 # Generate dynamic YAML files
 count = 10  # Number of dynamic YAML files to generate
