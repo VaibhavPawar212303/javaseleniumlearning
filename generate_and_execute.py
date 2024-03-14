@@ -31,3 +31,4 @@ for i in range(1, count + 1):
 for i in range(1, count + 1):
     print(f"Executing dynamic_workflow_{i}.yml...")
     os.system(f"gh workflow run dynamic_workflow_{i}.yml")
+
