@@ -42,6 +42,9 @@ jobs:
       
       - name: Check generated YAML files
         run: ls -l dynamic_workflows/*.yml
+      
+      - name: Check folder structure
+        run: ls -l 
 
       - name: Run dynamic workflows
         run: |
