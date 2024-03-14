@@ -46,12 +46,12 @@ jobs:
       - name: Check folder structure
         run: ls -l 
 
-      - name: Run dynamic workflows
+      - name: Debug File Paths
         run: |
-          # Loop to execute dynamically generated YAML files
-          for file in .github/*.yml; do
-            echo "Running $file..."
-            gh auth login
-            filename=$(basename "$file")
-            gh workflow run "$filename"
+          echo "Contents of dynamic_workflows directory:"
+          ls -l dynamic_workflows
+          echo "Contents of each YAML file:"
+          for file in dynamic_workflows/*.yml; do
+            echo "File: $file"
+            cat "$file"
           done
